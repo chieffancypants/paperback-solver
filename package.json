@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dev": "npx ts-node index.ts",
+    "watch": "npx nodemon ./index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.3",
+    "eslint": "^8.39.0",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
