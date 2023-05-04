@@ -1,5 +1,5 @@
-import findWords from './lib/find-words';
-import wordlist from './wordlist';
+import findWords from './src/app/lib/find-words';
+import wordlist from './src/app/lib/wordlist';
 
 let charString = ''
 for (let i = 2; i < process.argv.length; i++) {

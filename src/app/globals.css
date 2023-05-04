@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+#Rack div {
+  transition: all .5s;
+  animation: append-animate .25s cubic-bezier(0, 0.45, 0.65, 1.21);
+}
+
+@keyframes append-animate {
+  from {
+    transform: scaleX(0);
+    opacity: 1;
+    width: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+    width: 1;
+  }
+}
