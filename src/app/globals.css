@@ -26,9 +26,10 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-#Rack div {
-  transition: all .5s;
-  animation: append-animate .25s cubic-bezier(0, 0.45, 0.65, 1.21);
+#Rack > div > div {
+  transition: all .25s cubic-bezier(0, 0.45, 0.65, 1.21);
+  animation: append-animate .25s cubic-bezier(0, 0.45, 0.2, 1.27);
+  animation-direction: alternate;
 }
 
 @keyframes append-animate {
@@ -41,5 +42,24 @@ body {
     transform: scaleX(1);
     opacity: 1;
     width: 1;
+  }
+}
+
+@keyframes remove-animate {
+  from {
+    transform: scaleX(1);
+    opacity: 1;
+    width: 1;
+  }
+  to {
+    transform: scaleX(0);
+    opacity: 1;
+    width: 0;
+  }
+}
+
+@keyframes underline-blink {
+  from {
+    
   }
 }

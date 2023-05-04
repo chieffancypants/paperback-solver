@@ -6,15 +6,16 @@ export default function findWords(characters: string[], wordlist: string[], minL
   characters = characters.map(char => char.toUpperCase())
 
   for (const word of wordlist) {
-    if (word.length < 4) continue;
+    // if (word.length < 4) continue;
     if (matchCharacters(word, characters)) {
         matches.push(word);
     }
   }
 
+  // sort and limit response to 100 matches
   return matches.sort((a, b) => {
     return b.length - a.length || a.localeCompare(b)
-  })
+  }).slice(0, 50)
 }
 
 function matchCharacters (word: string, tiles: string[]) {
