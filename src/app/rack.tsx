@@ -5,6 +5,11 @@ import {
   useState,
 } from 'react';
 
+import {
+  CommandIcon,
+  ReturnIcon,
+} from './icons';
+import KeyboardButton from './keyboard-button';
 import SolveResults from './solve-results';
 import Tile from './tile';
 
@@ -21,7 +26,7 @@ const isAlpha = (code:number) => {
 
 export default function Rack () {
     
-    const [tiles, setTiles] = useState<string[]>(['C', 'A', '?', 'P', '?', 'T'])
+    const [tiles, setTiles] = useState<string[]>([''])
     const [cursor, setCursor] = useState<number>(tiles.length - 1)
     const [solveResults, setSolveResults] = useState<string[]>([])
     
@@ -48,12 +53,14 @@ export default function Rack () {
         if (ignoreKeys.includes(e.key)) return
         
         if (e.key === 'Backspace') {
+            if (tiles.length === 0) return
+
             if (e.metaKey) {
                 setTiles([''])
                 setCursor(0)
-                setSolveResults([])
-                return
+                return setSolveResults([])
             }
+
             if (tiles[cursor] === '') {
                 // delete the current empty tile and set the cursor back one
                 setTiles(prev => prev.slice(0, -1))
@@ -96,10 +103,13 @@ export default function Rack () {
         }
     }
 
+    const showKeyboard = () => {
+        // TODO: Show keyboard
+    }
 
     return (
-        <div className="container" id="Rack">
-            <div className="container flex justify-center items-center">
+        <div className="flex flex-col gap-5" id="Rack">
+            <div className="flex justify-center items-center gap-2 md:gap-4" onClick={ showKeyboard }>
                 {
                     tiles.map((tile, i) => {
                         return <Tile key={i} chars={tile.toUpperCase()} selected={i === cursor}></Tile>
@@ -113,28 +123,22 @@ export default function Rack () {
 
             <SolveResults matches={solveResults} />
 
-            <div className="container flex justify-center p-10">
-                <button 
+            <div className="flex justify-center gap-2">
+                <KeyboardButton />
+                <button
                     onClick={solveTiles}
-                    className="flex gap-2 rounded-lg text-xl p-4 px-10 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-300">
-
+                    className="rounded-lg text-xl p-4 px-10 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-300">
                     <div className="flex items-center">
-                        Solve&nbsp;&nbsp;<span className="flex text-slate-500">{commandIco()}{returnIco()}</span>
+                        Solve&nbsp;&nbsp;<span className="flex text-slate-500"><CommandIcon /><ReturnIcon /></span>
                     </div>
                 </button>
             </div>
+                {/* <button 
+                    onClick={ showKeyboard }
+                    className="rounded-lg text-xl p-4 px-5 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-300">
+                    <KeyboardIcon size={32}  />
+                </button> */}
         </div>
     )
 }
 
-function backspaceIco () {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline"><path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"></path><line x1="18" x2="12" y1="9" y2="15"></line><line x1="12" x2="18" y1="9" y2="15"></line></svg>
-}
-
-function commandIco () {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"></path></svg>
-}
-
-function returnIco () {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline"><polyline points="9 10 4 15 9 20"></polyline><path d="M20 4v7a4 4 0 0 1-4 4H4"></path></svg>
-}

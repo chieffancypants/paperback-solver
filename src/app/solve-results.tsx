@@ -5,16 +5,9 @@ type ResultProps = {
 }
 
 export default function Results (props:ResultProps) {
-    // console.log(props.matches)
-
     const organized:Record<number, string[]> = {}
-    // let groupByLen = [['aaa', 'bbb'], ['aa', 'bb']]
-    // let groupByLen = []
-    // props.matches.forEach((match) => {
-    //     groupByLen.push(match)
-    // })
-
     let resultGroups
+
     // sort matches first by length (longer first), then alphabetically
     props.matches.sort((a, b) => {
         return b.length - a.length || a.localeCompare(b)
@@ -27,7 +20,7 @@ export default function Results (props:ResultProps) {
     })
 
     return (
-        <div className="container flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
             {
                 Object.entries(organized)
                     .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
