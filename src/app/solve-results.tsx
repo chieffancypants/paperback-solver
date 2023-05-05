@@ -2,6 +2,7 @@ import SolveResultsGroup from './solve-results-group';
 
 type ResultProps = {
     matches: string[]
+    display: boolean
 }
 
 export default function Results (props:ResultProps) {
@@ -19,6 +20,11 @@ export default function Results (props:ResultProps) {
         }
     })
 
+
+    if (props.matches.length === 0 && props.display) {
+        return <div className="text-xl text-center p-2 rounded-md highlight-rim bg-gray-700">No Results found</div>
+    }
+
     return (
         <div className="flex flex-col gap-2">
             {
@@ -27,7 +33,6 @@ export default function Results (props:ResultProps) {
                     .map(group => {
                         return <SolveResultsGroup key={group[0]} results={group[1]}></SolveResultsGroup>
                     })
-                // props.matches.map(match => <div key={match}>{match}</div>)
             }
         </div>
     )

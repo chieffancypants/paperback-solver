@@ -1,22 +1,22 @@
 'use client'
 
 import {
-  useEffect,
-  useState,
+    useEffect,
+    useState,
 } from 'react';
 
 import {
-  CommandIcon,
-  ReturnIcon,
+    CommandIcon,
+    ReturnIcon,
 } from './icons';
 import KeyboardButton from './keyboard-button';
+import type { Wordlist } from './lib/wordlist';
 import SolveResults from './solve-results';
 import Tile from './tile';
 
 const ignoreKeys = ['Shift', 'Control', 'Alt', 'Meta', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft', 'Escape']
 
-
-const isAlpha = (code:number) => {
+const isTile = (code:number) => {
     return (
         (code > 64 && code < 91) ||   // A-Z
         (code > 96 && code < 123) ||  // a-z
@@ -24,29 +24,32 @@ const isAlpha = (code:number) => {
     )
 }
 
-export default function Rack () {
-    
+type RackProps = {
+    wordlist: Wordlist
+}
+export default function Rack (props:RackProps) {
     const [tiles, setTiles] = useState<string[]>([''])
     const [cursor, setCursor] = useState<number>(tiles.length - 1)
     const [solveResults, setSolveResults] = useState<string[]>([])
-    
+    const [displayResults, setDisplayResults] = useState<boolean>(false)    
+
     useEffect(() => {
         window.addEventListener('keydown', onKeyPress)
-        return () => {
-            window.removeEventListener('keydown', onKeyPress)
-        }
+        return () => window.removeEventListener('keydown', onKeyPress)
     })
 
     const solveTiles = async () => {
-        const resp = await fetch('/api/solver', { method: 'POST', body: JSON.stringify({ tiles }) })
-        const data:{matches: string[]} = await resp.json()
+        const matches = await props.wordlist.findMatches(tiles)
+        // const resp = await fetch('/api/solver', { method: 'POST', body: JSON.stringify({ tiles }) })
+        // const data:{matches: string[]} = await resp.json()
 
-        // sort matches first by length (longer first), then alphabetically
-        data.matches.sort((a, b) => {
-            return b.length - a.length || a.localeCompare(b)
-        })
+        // // sort matches first by length (longer first), then alphabetically
+        // data.matches.sort((a, b) => {
+        //     return b.length - a.length || a.localeCompare(b)
+        // })
 
-        setSolveResults(data.matches)
+        setSolveResults(matches)
+        setDisplayResults(true)
     }
     
     const onKeyPress = (e:KeyboardEvent) => {
@@ -55,17 +58,16 @@ export default function Rack () {
         if (e.key === 'Backspace') {
             if (tiles.length === 0) return
 
+            setDisplayResults(false)
+
             if (e.metaKey) {
                 setTiles([''])
                 setCursor(0)
-                return setSolveResults([])
-            }
-
-            if (tiles[cursor] === '') {
+                setSolveResults([])
+            } else if (tiles[cursor] === '') {
                 // delete the current empty tile and set the cursor back one
                 setTiles(prev => prev.slice(0, -1))
                 setCursor(prev => prev - 1)
-                console.log('delete last tile')
             } else {
                 // delete the last letter in the current tile
                 const t = [ ...tiles ]
@@ -88,10 +90,10 @@ export default function Rack () {
 
             setTiles(prev => [ ...prev, ...[''] ])
             setCursor(tiles.length)
-        } else if (isAlpha(e.key.charCodeAt(0))) {
+        } else if (isTile(e.key.charCodeAt(0))) {
             if (tiles[cursor].length > 1) return
 
-            const activeTile = tiles[cursor] + e.key
+            setDisplayResults(false)
             setTiles(prev => {
                 return prev.map((tile, i) => { 
                     if (i === cursor) {
@@ -115,29 +117,21 @@ export default function Rack () {
                         return <Tile key={i} chars={tile.toUpperCase()} selected={i === cursor}></Tile>
                     })
                 }
-                {/* <div className="flex items-center gap-1 text-sm">
-                    <div>{backspaceIco()}</div>
-                    <div className="text-xs font-light text-slate-500">Backspace<br/> to delete</div>
-                </div> */}
             </div>
 
-            <SolveResults matches={solveResults} />
 
             <div className="flex justify-center gap-2">
                 <KeyboardButton />
                 <button
                     onClick={solveTiles}
-                    className="rounded-lg text-xl p-4 px-10 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-300">
+                    className="rounded-lg text-xl p-4 px-6 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-300">
                     <div className="flex items-center">
                         Solve&nbsp;&nbsp;<span className="flex text-slate-500"><CommandIcon /><ReturnIcon /></span>
                     </div>
                 </button>
             </div>
-                {/* <button 
-                    onClick={ showKeyboard }
-                    className="rounded-lg text-xl p-4 px-5 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-300">
-                    <KeyboardIcon size={32}  />
-                </button> */}
+
+            <SolveResults matches={solveResults} display={displayResults} />
         </div>
     )
 }

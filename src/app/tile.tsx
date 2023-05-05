@@ -6,8 +6,8 @@ type TileProps = {
 }
 
 export default function Tile (props:TileProps) {
-
-    let underline = props.selected ? 'bg-cyan-100' : 'bg-none'
+    
+    let underline = props.selected ? 'bg-cyan-200' : 'bg-none'
     let border = props.selected ? 'border-cyan-500' : 'border-gray-400'
     let color = props.selected ? 'text-cyan-200' : ' text-gray-200'
 

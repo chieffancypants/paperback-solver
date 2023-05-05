@@ -1,11 +1,11 @@
 import {
-  useEffect,
-  useRef,
+    useEffect,
+    useRef,
 } from 'react';
 
 import {
-  ChevronUpIcon,
-  KeyboardIcon,
+    ChevronUpIcon,
+    KeyboardIcon,
 } from './icons';
 
 export default function KeyboardButton () {
