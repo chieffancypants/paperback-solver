@@ -1,21 +1,22 @@
+import styles from './tile.module.css';
 
 type TileProps = {
     chars: string
-    underline?: boolean
     selected?: boolean
 }
-
-export default function Tile (props:TileProps) {
-    
-    let underline = props.selected ? 'bg-cyan-200' : 'bg-none'
-    let border = props.selected ? 'border-cyan-500' : 'border-gray-400'
-    let color = props.selected ? 'text-cyan-200' : ' text-gray-200'
+export default function Tile ({ chars, selected }:TileProps) {
 
     return (
-        <div className={`animate-entrance w-24 h-24 bg-gradient-to-b from-gray-700 to-gray-600/50 rounded-lg flex flex-col items-center justify-center font-bold text-4xl shadow-xl ${color} border-4 ${border}`}>
-            <div className="w-full h-full p-2 pt-3">
-                <div className="w-full h-full flex items-center justify-center uppercase">{props.chars}</div>
-                <div className={`underline-blink m-auto h-1 mb-2 ${underline}`}></div>
+        <div className={`
+            ${ styles.shadow }
+            ${ selected ? styles.selected : '' }
+            ${ selected ? 'text-teal-700' : 'text-paper-900' }
+            animate-entrance w-24 h-28 rounded-2xl
+            flex flex-col items-center justify-center font-bold text-6xl border border-black
+        `}>
+            <div className="w-full h-full p-3 pt-8">
+                <div className="w-full h-full flex items-center justify-center uppercase">{chars}</div>
+                <div className={`underline-blink m-auto h-1 rounded-full ${ selected ? 'bg-teal-700' : 'bg-none' }`}></div>
             </div>
         </div>
     )

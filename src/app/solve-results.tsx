@@ -1,4 +1,5 @@
 import SolveResultsGroup from './solve-results-group';
+import styles from './solve-results.module.css';
 
 type ResultProps = {
     matches: string[]
@@ -22,7 +23,7 @@ export default function Results (props:ResultProps) {
 
 
     if (props.matches.length === 0 && props.display) {
-        return <div className="text-xl text-center p-2 rounded-md highlight-rim bg-gray-700">No Results found</div>
+        return <div className={`${ styles.shadow } text-xl text-center p-2 rounded-md bg-gray-700`}>No Results found</div>
     }
 
     return (

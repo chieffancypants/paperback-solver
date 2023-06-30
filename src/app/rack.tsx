@@ -1,18 +1,13 @@
 'use client'
 
-import {
-    useEffect,
-    useState,
-} from 'react';
+import { useEffect, useState } from 'react';
 
-import {
-    CommandIcon,
-    ReturnIcon,
-} from './icons';
+import { CommandIcon, ReturnIcon } from './icons';
 import KeyboardButton from './keyboard-button';
-import type { Wordlist } from './lib/wordlist';
 import SolveResults from './solve-results';
 import Tile from './tile';
+
+import type { Wordlist } from './lib/wordlist';
 
 const ignoreKeys = ['Shift', 'Control', 'Alt', 'Meta', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft', 'Escape']
 
@@ -28,10 +23,11 @@ type RackProps = {
     wordlist: Wordlist
 }
 export default function Rack (props:RackProps) {
-    const [tiles, setTiles] = useState<string[]>([''])
+    // const [tiles, setTiles] = useState<string[]>([''])
+    const [tiles, setTiles] = useState<string[]>(['P', 'U', 'N', 'CH', '?', 'NG'])
     const [cursor, setCursor] = useState<number>(tiles.length - 1)
     const [solveResults, setSolveResults] = useState<string[]>([])
-    const [displayResults, setDisplayResults] = useState<boolean>(false)    
+    const [displayResults, setDisplayResults] = useState<boolean>(false)
 
     useEffect(() => {
         window.addEventListener('keydown', onKeyPress)
@@ -51,10 +47,10 @@ export default function Rack (props:RackProps) {
         setSolveResults(matches)
         setDisplayResults(true)
     }
-    
+
     const onKeyPress = (e:KeyboardEvent) => {
         if (ignoreKeys.includes(e.key)) return
-        
+
         if (e.key === 'Backspace') {
             if (tiles.length === 0) return
 
@@ -95,7 +91,7 @@ export default function Rack (props:RackProps) {
 
             setDisplayResults(false)
             setTiles(prev => {
-                return prev.map((tile, i) => { 
+                return prev.map((tile, i) => {
                     if (i === cursor) {
                         return tile + e.key
                     }
@@ -124,9 +120,10 @@ export default function Rack (props:RackProps) {
                 <KeyboardButton />
                 <button
                     onClick={solveTiles}
-                    className="rounded-lg text-xl p-4 px-6 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-300">
+                    className="rounded-lg text-3xl p-3 px-6 h-16 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-700">
                     <div className="flex items-center">
-                        Solve&nbsp;&nbsp;<span className="flex text-slate-500"><CommandIcon /><ReturnIcon /></span>
+                        <span className="flex-grow pr-3 mt-[6px]">Solve</span>
+                        <span className="flex text-slate-600"><CommandIcon /><ReturnIcon /></span>
                     </div>
                 </button>
             </div>
@@ -135,4 +132,3 @@ export default function Rack (props:RackProps) {
         </div>
     )
 }
-

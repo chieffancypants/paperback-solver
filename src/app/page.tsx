@@ -5,8 +5,6 @@ import {
     useState,
 } from 'react';
 
-import { Inter } from 'next/font/google';
-
 import {
     BackspaceIcon,
     ReturnIcon,
@@ -14,8 +12,6 @@ import {
 import { Wordlist } from './lib/wordlist';
 import LoadingIndicator from './loading-indicator';
 import Rack from './rack';
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home () {
     const [wordlist, setWordlist] = useState<string[]>([])
@@ -28,7 +24,7 @@ export default function Home () {
     }, [])
 
     return (
-        <main className="flex flex-col items-stretch justify-between p-4 bg-gray-800 sm:p-8 md:p-12 lg:p-24">
+        <main className="flex flex-col items-stretch justify-between p-4 sm:p-8 md:p-12 lg:p-24">
             <LoadingIndicator visible={ wordlist.length === 0 } />
             <Rack wordlist={Wordlist} />
             <ul className='text-center text-gray-500 mt-20'>

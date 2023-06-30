@@ -1,12 +1,6 @@
-import {
-    useEffect,
-    useRef,
-} from 'react';
+import { useEffect, useRef } from 'react';
 
-import {
-    ChevronUpIcon,
-    KeyboardIcon,
-} from './icons';
+import { ChevronUpIcon, KeyboardIcon } from './icons';
 
 export default function KeyboardButton () {
     const inputRef = useRef<HTMLInputElement>(null)
@@ -17,15 +11,15 @@ export default function KeyboardButton () {
 
     useEffect(() => {
         if (inputRef.current) {
-            inputRef.current.style.display = 'inline'  
-        } 
+            inputRef.current.style.display = 'inline'
+        }
     })
 
     return (
         <div>
-            <button 
+            <button
                 onClick={ showKeyboard }
-                className="rounded-lg text-xl p-4 px-5 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-300">
+                className="rounded-lg text-xl p-4 px-5 h-16 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-700">
                 <KeyboardIcon size={32} />
                 <ChevronUpIcon size={32} />
             </button>
