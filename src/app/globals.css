@@ -18,6 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-weight: 400;
 }
 
 
@@ -57,18 +58,6 @@ body {
     transform: scaleX(0);
     opacity: 1;
     width: 0;
-  }
-}
-
-.underline-blink {
-  animation: underline-blink 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-@keyframes underline-blink {
-  10%, 90% {
-    opacity: 1;
-  }
-  50% {
-    opacity: .2;
   }
 }
 

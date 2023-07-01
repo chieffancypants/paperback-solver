@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 
+import Button from './button';
 import { ChevronUpIcon, KeyboardIcon } from './icons';
 
 export default function KeyboardButton () {
@@ -17,12 +18,12 @@ export default function KeyboardButton () {
 
     return (
         <div>
-            <button
+            <Button
                 onClick={ showKeyboard }
-                className="rounded-lg text-xl p-4 px-5 h-16 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-700">
+                className="h-16 px-5">
                 <KeyboardIcon size={32} />
                 <ChevronUpIcon size={32} />
-            </button>
+            </Button>
             <input
                 autoFocus
                 autoComplete="off"

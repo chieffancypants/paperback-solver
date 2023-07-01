@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import Button from './button';
 import { CommandIcon, ReturnIcon } from './icons';
 import KeyboardButton from './keyboard-button';
 import SolveResults from './solve-results';
@@ -118,14 +119,18 @@ export default function Rack (props:RackProps) {
 
             <div className="flex justify-center gap-2">
                 <KeyboardButton />
-                <button
+                <Button onClick={solveTiles} className="flex items-center h-16">
+                    <span className="flex-grow pr-3 mt-[6px]">Solve</span>
+                    <span className="flex text-paper-900 opacity-60"><CommandIcon /><ReturnIcon /></span>
+                </Button>
+                {/* <button
                     onClick={solveTiles}
                     className="rounded-lg text-3xl p-3 px-6 h-16 bg-gray-300/20 shadow-xl border border-gray-500 hover:border-gray-400 text-slate-700">
                     <div className="flex items-center">
                         <span className="flex-grow pr-3 mt-[6px]">Solve</span>
                         <span className="flex text-slate-600"><CommandIcon /><ReturnIcon /></span>
                     </div>
-                </button>
+                </button> */}
             </div>
 
             <SolveResults matches={solveResults} display={displayResults} />

@@ -1,44 +1,26 @@
 .shadow {
-    box-shadow:
-        /* Dark bottom right */
-        inset -2px -2px 8px rgba(65, 43, 0, 0.5),
-        inset -2px -2px 3px rgba(65, 43, 0, 0.2),
-        inset -2px -2px 0px rgba(65, 43, 0, 0.1),
-
-        /* light top left */
-        inset 2px 2px 2px rgba(255, 255, 255, 0.5),
-        inset 2px 2px 1px rgba(255, 255, 255, 1),
-        0px 0px 0px 0px #222020,
-
-        /* smooth shadow */
-        0px 0.7px 0.5px rgba(0, 0, 0, 0.06),
-        1px 1.7px 1.3px rgba(0, 0, 0, 0.07),
-        2px 3.1px 2.7px rgba(0, 0, 0, 0.05),
-        3px 5.6px 5.2px rgba(0, 0, 0, 0.05),
-        0px 10.4px 10.4px rgba(0, 0, 0, 0.029),
-        0px 25px 32px rgba(0, 0, 0, 0.07);
-    /* background-color: rgb(222, 217, 180) */
-    background: linear-gradient(to bottom, rgb(255 253 239), rgb(221, 217, 194));
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.25), 2px 2px 2px 0px rgba(0, 0, 0, 0.09), 8px 8px 15px 0px rgba(0, 0, 0, 0.04), 15px 14px 20px 0px rgba(0, 0, 0, 0.06);
+    text-shadow: -1.75px -1.75px 0px rgba(0, 0, 0, 0.89), 2px 2px 0px #F1E6D6;
+    font-weight: 400;
+    letter-spacing: -0.045em;
 }
 
 .selected {
-    box-shadow:
-        /* Dark bottom right */
-        inset -1px -1px 3px rgba(49, 33, 0, 0.5),
-        inset -1px -1px 1px rgba(49, 33, 0, 0.05),
-        inset -1px -1px 0px rgba(49, 33, 0, 0.25),
+    text-shadow: none;
+    text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.35), 2px 2px 1px rgba(241, 230, 214, 0.88);
+}
 
-        /* light top left */
-        inset 2px 2px 2px rgba(255, 255, 255, 0.5),
-        inset 2px 2px 1px rgba(255, 255, 255, 1),
-        0px 0px 0px 5px #222020,
 
-        /* smooth shadow */
-        0px 0.7px 0.5px rgba(0, 0, 0, 0.03),
-        0px 1.7px 1.3px rgba(0, 0, 0, 0.03),
-        0px 3.1px 2.7px rgba(0, 0, 0, 0.028),
-        0px 5.6px 5.2px rgba(0, 0, 0, 0.026),
-        0px 10.4px 10.4px rgba(0, 0, 0, 0.029),
-        0px 25px 32px rgba(0, 0, 0, 0.07);
-    background: #fffeee;
+.underlineBlink {
+    animation: underlineBlink 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes underlineBlink {
+    20%,
+    80% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.15;
+    }
 }

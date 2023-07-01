@@ -1,0 +1,10 @@
+.button {
+    transform: translateY(-0.13em) translateX(-0.13em);
+    transition: transform 0.1s ease;
+}
+.button:hover {
+    transform: translateY(-0.2em) translateX(-0.2em);
+}
+.button:active {
+    transform: translateY(0) translateX(0);
+}
