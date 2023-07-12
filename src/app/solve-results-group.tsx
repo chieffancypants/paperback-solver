@@ -1,4 +1,4 @@
-import styles from './solve-results.module.css';
+import styles from './solve-results.module.css'
 
 type SolveResultsGroup = {
     results: string[]

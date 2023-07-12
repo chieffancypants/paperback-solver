@@ -1,5 +1,5 @@
-import SolveResultsGroup from './solve-results-group';
-import styles from './solve-results.module.css';
+import SolveResultsGroup from './solve-results-group'
+import styles from './solve-results.module.css'
 
 type ResultProps = {
     matches: string[]

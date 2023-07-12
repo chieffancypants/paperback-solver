@@ -1,6 +1,6 @@
-import './globals.css';
+import './globals.css'
 
-import { Special_Elite } from 'next/font/google';
+import { Special_Elite } from 'next/font/google'
 
 const se = Special_Elite({ subsets:['latin'], weight: '400' })
 

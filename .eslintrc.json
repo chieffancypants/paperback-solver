@@ -3,6 +3,10 @@
   "rules": {
     "indent": ["error", 4, { "SwitchCase": 1, "ignoredNodes": ["PropertyDefinition[decorators]"] }],
     "quotes": ["error", "single"],
+    "no-trailing-spaces": ["error"],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
+    "eol-last": ["error", "always"],
+    "semi": ["error", "never"],
     "no-console": [ "warn", {
         "allow": [
             "warn",

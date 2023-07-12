@@ -1,4 +1,4 @@
-import styles from './tile.module.css';
+import styles from './tile.module.css'
 
 type TileProps = {
     chars: string

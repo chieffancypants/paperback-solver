@@ -1,14 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import Button from './button';
-import { CommandIcon, ReturnIcon } from './icons';
-import KeyboardButton from './keyboard-button';
-import SolveResults from './solve-results';
-import Tile from './tile';
+import Button from './button'
+import { CommandIcon, ReturnIcon } from './icons'
+import KeyboardButton from './keyboard-button'
+import SolveResults from './solve-results'
+import Tile from './tile'
 
-import type { Wordlist } from './lib/wordlist';
+import type { Wordlist } from './lib/wordlist'
 
 const ignoreKeys = ['Shift', 'Control', 'Alt', 'Meta', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft', 'Escape']
 

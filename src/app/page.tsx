@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
 import {
     useEffect,
     useState,
-} from 'react';
+} from 'react'
 
 import {
     BackspaceIcon,
     ReturnIcon,
-} from './icons';
-import { Wordlist } from './lib/wordlist';
-import LoadingIndicator from './loading-indicator';
-import Rack from './rack';
+} from './icons'
+import { Wordlist } from './lib/wordlist'
+import LoadingIndicator from './loading-indicator'
+import Rack from './rack'
 
 export default function Home () {
     const [wordlist, setWordlist] = useState<string[]>([])

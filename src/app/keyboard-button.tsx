@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 
-import Button from './button';
-import { ChevronUpIcon, KeyboardIcon } from './icons';
+import Button from './button'
+import { ChevronUpIcon, KeyboardIcon } from './icons'
 
 export default function KeyboardButton () {
     const inputRef = useRef<HTMLInputElement>(null)
