@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out -t"
+    "deploy": "gh-pages -d out -t",
+    "predeploy": "next lint && next build"
   },
   "dependencies": {
     "autoprefixer": "10.4.14",

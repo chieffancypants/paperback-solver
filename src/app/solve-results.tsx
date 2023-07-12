@@ -23,7 +23,7 @@ export default function Results (props:ResultProps) {
 
 
     if (props.matches.length === 0 && props.display) {
-        return <div className={`${ styles.shadow } text-xl text-center p-2 rounded-md bg-paper-900`}>No Results found</div>
+        return <div className={`${ styles.shadow } text-xl text-center p-2 rounded-md bg-paper-900 text-paper-100`}>No Results found, or too few characters (4 minimum)</div>
     }
 
     return (

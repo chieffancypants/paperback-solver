@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import styles from './solve-results.module.css'
 
 type SolveResultsGroup = {
@@ -10,7 +12,7 @@ export default function SolveResultsGroup (props: SolveResultsGroup) {
             <div className="grid grid-cols-4 gap-4 p-4">
                 {
                     props.results.map(result => {
-                        return <div key={ result } className="text-center text-paper-100 text-xl font-thin">{ result }</div>
+                        return <div key={ result } className="text-center text-paper-100 text-xl font-thin"><Link target="_blank" className="opacity-80 hover:opacity-100" href={`https://www.merriam-webster.com/dictionary/${ result }`}>{ result }</Link></div>
                     })
                 }
             </div>

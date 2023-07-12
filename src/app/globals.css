@@ -2,33 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
-  color: rgb(var(--foreground-rgb));
   font-weight: 400;
 }
 
-
-/*
-#Rack > div > div {
-  transition: all .35s cubic-bezier(0.4, 0, 0.6, 1);
-  animation: append-animate .25s cubic-bezier(0, 0.45, 0.2, 1.27);
-  animation-direction: alternate;
-} */
-
+a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .animate-entrance {
   transition: all .35s cubic-bezier(0.4, 0, 0.6, 1);
   animation: append-animate .25s cubic-bezier(0, 0.45, 0.2, 1.27);
