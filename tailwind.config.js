@@ -12,11 +12,11 @@ module.exports = {
     theme: {
         extend: {
             backgroundImage: {
-                // 'textured': 'linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/paper-texture.jpg)',
-                // 'textured': 'radial-gradient(#00000000, #3a2501b0), url(/paper-texture.jpg)',
-                // 'textured': 'radial-gradient(circle, rgba(255,171,0,0) 80%, rgb(50 29 0 / 51%) 100%), url(/paper-texture.jpg)'
-                // 'textured': 'radial-gradient(circle, rgba(255,171,0,0) 20%, rgb(50 29 0 / 51%) 90%), linear-gradient(#ECF7FC66, #FEFEFE66), url(/paper-texture.jpg)'
-                'linen': `url(${basePath}/bg.png)`
+                // 'linen': `url(${basePath}/bg.webp)`
+                'linen': `image-set(
+                    url("${ basePath }/bg.webp") type("image/webp"),
+                    url("${basePath}/bg.jpg") type("image/jpeg")
+                )`
             },
             boxShadow: {
                 'xl': '2px 4px 0px 1px rgb(74, 70, 70), 4px 7px 0px 1px rgb(74, 70, 70)',

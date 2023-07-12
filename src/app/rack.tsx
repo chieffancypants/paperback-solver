@@ -24,8 +24,7 @@ type RackProps = {
     wordlist: Wordlist
 }
 export default function Rack (props:RackProps) {
-    // const [tiles, setTiles] = useState<string[]>([''])
-    const [tiles, setTiles] = useState<string[]>(['?'])
+    const [tiles, setTiles] = useState<string[]>(['P', 'A', 'P', 'ER', 'B', 'A', 'CK'])
     const [cursor, setCursor] = useState<number>(tiles.length - 1)
     const [solveResults, setSolveResults] = useState<string[]>([])
     const [displayResults, setDisplayResults] = useState<boolean>(false)

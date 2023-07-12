@@ -7,8 +7,8 @@ export default function Button(props: ButtonProps) {
     const { className:classNames, ...otherProps } = props
 
     return (
-        <div className="bg-paper-900 text-3xl text-[#4A4646] rounded-2xl transition-all relative ml-2 mt-2">
-            <button className={`${classNames} ${styles.button} bg-paper-500 rounded-2xl py-2 px-8 border-[3px] border-[#4A4646]`} {...otherProps}>
+        <div className="bg-paper-900 text-3xl text-paper-900 rounded-2xl transition-all relative ml-2 mt-2">
+            <button className={`${classNames} ${styles.button} bg-paper-500 rounded-2xl py-2 px-8 border-[3px] border-paper-900`} {...otherProps}>
                 <div className="absolute flex left-[1px] top-[1px] w-4/6 h-2/3 text-paper-100"><ButtonSvg /></div>
                 <div className="absolute flex right-[1px] bottom-[1px] w-4/6 h-3/4 text-paper-700 opacity-70 rotate-180"><ButtonSvg /></div>
                 {props.children}
