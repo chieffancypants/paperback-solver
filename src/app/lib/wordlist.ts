@@ -70,7 +70,7 @@ const matchCharacters = (word: string, tiles: string[]) => {
 const loadWordlist = async () => {
     if (isLoaded()) return wordlistCache
 
-    wordlistCache = (await fetch('/wordlist.txt')
+    wordlistCache = (await fetch('wordlist.txt')
         .then(r => r.text()))
         .trim().split('\n')
     return wordlistCache
