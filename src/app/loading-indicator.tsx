@@ -5,7 +5,7 @@ type LoadingIndicatorProps = {
 }
 export default function LoadingIndicator (props:LoadingIndicatorProps) {
     return (
-        <div className={`flex items-center bg-gray-900 p-4 mb-5 absolute rounded-lg ${ props.visible ? 'visible' : 'hidden' }`}>
+        <div className={`flex items-center bg-paper-900 p-4 mb-5 absolute rounded-lg ${ props.visible ? 'visible' : 'hidden' }`}>
             <SpinnerIcon />
             <div className="text-gray-500 pl-4">loading wordlist...</div>
         </div>
