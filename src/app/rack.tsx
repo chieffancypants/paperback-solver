@@ -25,7 +25,7 @@ type RackProps = {
 }
 export default function Rack (props:RackProps) {
     // const [tiles, setTiles] = useState<string[]>([''])
-    const [tiles, setTiles] = useState<string[]>(['P', 'U', 'N', 'CH', '?', 'NG'])
+    const [tiles, setTiles] = useState<string[]>([''])
     const [cursor, setCursor] = useState<number>(tiles.length - 1)
     const [solveResults, setSolveResults] = useState<string[]>([])
     const [displayResults, setDisplayResults] = useState<boolean>(false)
@@ -108,7 +108,7 @@ export default function Rack (props:RackProps) {
 
     return (
         <div className="flex flex-col gap-5" id="Rack">
-            <div className="flex justify-center items-center gap-2 md:gap-4" onClick={ showKeyboard }>
+            <div className="flex -space-x-4 sm:-space-x-0 sm:gap-2 md:gap-4 justify-between sm:justify-center items-center" onClick={ showKeyboard }>
                 {
                     tiles.map((tile, i) => {
                         return <Tile key={i} chars={tile.toUpperCase()} selected={i === cursor}></Tile>

@@ -20,7 +20,7 @@ export default function KeyboardButton () {
         <div>
             <Button
                 onClick={ showKeyboard }
-                className="h-16 px-5">
+                className="h-16 px-4">
                 <KeyboardIcon size={32} />
                 <ChevronUpIcon size={32} />
             </Button>
