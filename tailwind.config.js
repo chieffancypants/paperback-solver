@@ -13,10 +13,7 @@ module.exports = {
         extend: {
             backgroundImage: {
                 // 'linen': `url(${basePath}/bg.webp)`
-                'linen': `image-set(
-                    url("${ basePath }/bg.webp") type("image/webp"),
-                    url("${basePath}/bg.jpg") type("image/jpeg")
-                )`
+                'linen': `url(${basePath}/bg.jpg)`
             },
             boxShadow: {
                 'xl': '2px 4px 0px 1px rgb(74, 70, 70), 4px 7px 0px 1px rgb(74, 70, 70)',

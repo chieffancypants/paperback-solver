@@ -9,7 +9,7 @@ export interface Wordlist {
 }
 
 
-const findMatches = async (chars: string[], minLen=4): Promise<string[]> => {
+const findMatches = async (chars: string[], minLen=3): Promise<string[]> => {
     const matches: string[] = []
     const wordlist = await loadWordlist()
     const characters = chars.map(char => char.toUpperCase())
