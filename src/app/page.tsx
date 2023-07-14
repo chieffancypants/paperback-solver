@@ -3,15 +3,20 @@
 import { useEffect, useState } from 'react'
 
 import { BackspaceIcon, CommandIcon, KeyboardIcon, ReturnIcon } from './icons'
-import Button from './button'
-import LoadingIndicator from './loading-indicator'
-import Modal from './modal'
-import Rack from './rack'
-import { Wordlist } from './lib/wordlist'
+import Button from '../components/button/button'
+import LoadingIndicator from '../components/loading-indicator'
+import Modal from '../components/modal'
+import SolveResults from '../components/solve-results'
+import TileInputKeyboard from '../components/tile-input'
+import { Wordlist } from '../lib/wordlist'
 
 export default function Home() {
     const [wordlist, setWordlist] = useState<string[]>([])
     const [showHelp, setShowHelp] = useState<boolean>(false)
+    const [tiles, setTiles] = useState<string[]>(['P', 'A', 'P', 'ER', 'B', 'A', 'CK'])
+    const [solveResults, setSolveResults] = useState<string[]>([])
+    const [displayResults, setDisplayResults] = useState<boolean>(false)
+
 
     useEffect(() => {
         (async () => {
@@ -20,8 +25,15 @@ export default function Home() {
         })()
     }, [])
 
+    const solveTiles = async () => {
+        const matches = await Wordlist.findMatches(tiles)
+        setSolveResults(matches)
+        setDisplayResults(true)
+    }
+
+
     return (
-        <main className="flex flex-col items-stretch justify-between p-4 sm:p-8 md:p-12 lg:p-24 text-paper-900">
+        <main className="flex flex-col items-stretch justify-between sm:p-1 lg:p-10 text-paper-900">
 
             <LoadingIndicator visible={wordlist.length === 0} />
             <Modal visible={showHelp} setVisible={setShowHelp}>
@@ -38,7 +50,20 @@ export default function Home() {
                 </div>
             </Modal>
 
-            <Rack wordlist={Wordlist} />
+
+            <TileInputKeyboard tiles={tiles} setTiles={setTiles} setDisplayResults={setDisplayResults} solver={solveTiles} />
+
+
+            <div className="flex justify-center gap-2">
+                <Button onClick={solveTiles} className="flex items-center h-16">
+                    <span className="flex-grow pr-3 mt-[6px]">Solve</span>
+                    <span className="flex text-paper-900 opacity-60"><CommandIcon /><ReturnIcon /></span>
+                </Button>
+            </div>
+
+            <SolveResults matches={solveResults} display={displayResults} />
+
+            <div className="w-1/2 m-auto text-center sm:hidden">Hint: Rotate your device for easier viewing.</div>
             <ul className='mt-20 text-xl text-paper-900 m-auto'>
                 <li>
                     <span className="opacity-70 w-12 inline-block text-right"><ReturnIcon /></span>
@@ -65,6 +90,7 @@ export default function Home() {
                     </svg>
                 </Button>
             </div>
+
         </main>
     )
 }

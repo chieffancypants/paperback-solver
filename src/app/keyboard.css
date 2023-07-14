@@ -1,0 +1,12 @@
+.simple-keyboard {
+    margin: auto;
+    @apply rounded-t-none rounded-b-lg bg-paper-900/60;
+}
+
+.simple-keyboard .specialBtn {
+    @apply bg-paper-500 border-paper-900 text-paper-900 font-bold;
+}
+
+.simple-keyboard .hg-button {
+    @apply bg-paper-100 text-paper-900
+}

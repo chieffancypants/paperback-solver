@@ -1,0 +1,12 @@
+@media (min-width: 640px) {
+    .shadow {
+        text-shadow: -1.75px -1.75px 0 rgba(0, 0, 0, 0.80), 2px 2px 0px #F1E6D6;
+        font-weight: 400;
+        letter-spacing: -0.045em;
+    }
+
+    .selected {
+        text-shadow: none;
+        text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.35), 2px 2px 1px rgba(241, 230, 214, 0.88);
+    }
+}

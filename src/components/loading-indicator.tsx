@@ -1,4 +1,4 @@
-import { SpinnerIcon } from './icons'
+import { SpinnerIcon } from '../app/icons'
 
 type LoadingIndicatorProps = {
     visible: boolean
