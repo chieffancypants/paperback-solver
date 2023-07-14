@@ -60,15 +60,17 @@ export default function TileInputKeyboard(props: TileInputProps) {
                 }
                 break
             case 'Enter':
-                // remove empty tiles and update cursor
-                const newTiles = tiles.filter((t) => t.length > 0)
-                setTiles(newTiles)
-                setCursor(newTiles.length - 1)
-                return solver(tiles)
+                // if current tile is empty, they're probably trying to submit
+                if (tiles[cursor] === '') {
+                    const newTiles = tiles.filter((t) => t.length > 0)
+                    setTiles(newTiles)
+                    setCursor(newTiles.length - 1)
+                    return solver(tiles)
+                }
+                // otherwise roll over to the tab case, which will create a new tile
             case 'Tab':
                 // don't create an empty tile
                 if (tiles[cursor] === '') return
-
                 setTiles(prev => [...prev, ...['']])
                 setCursor(tiles.length)
                 break
@@ -94,8 +96,8 @@ export default function TileInputKeyboard(props: TileInputProps) {
             case '{bksp}':
                 onKeyPress(new KeyboardEvent('keydown', { key: 'Backspace' }))
                 break
-            case '{tab}':
-                onKeyPress(new KeyboardEvent('keydown', { key: 'Tab' }))
+            case '{enter}':
+                onKeyPress(new KeyboardEvent('keydown', { key: 'Enter' }))
                 break
             default:
                 onKeyPress(new KeyboardEvent('keydown', { key: button }))
@@ -115,18 +117,18 @@ export default function TileInputKeyboard(props: TileInputProps) {
                 layout={{
                     default: [
                         'Q W E R T Y U I O P {bksp}',
-                        'A S D F G H J K L {tab}',
+                        'A S D F G H J K L {enter}',
                         'Z X C V B N M ?',
                     ]
                 }}
                 display={{
                     '{bksp}': 'delete ⌫',
-                    '{tab}': 'next →',
+                    '{enter}': 'next →',
                     '?': 'wild ?'
                 }}
                 buttonTheme={[{
                     class: 'specialBtn',
-                    buttons: '{bksp} {tab} ?'
+                    buttons: '{bksp} {enter} ?'
                 }]} />
         </div>
     )

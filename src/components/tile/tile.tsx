@@ -20,13 +20,10 @@ export default function Tile({ chars, selected }: TileProps) {
                 <div className="w-full h-full flex items-center justify-center uppercase">
                     {chars.split('').map((char, i) => <Letter selected={selected} key={i} className="mt-3 sm:mt-5">{char}</Letter>)}
                     {
-                        selected ?
-                            <div className={`${ styles.cursorBlink} text-right h-[65%] w-[8px]`}>
-                                <Cursor />
-                            </div>
-                            : ''
+                        selected ? <div className={`${styles.cursorBlink} text-right h-[65%] w-[8px]`}>
+                            <Cursor />
+                        </div> : ''
                     }
-                    {/* <Letter key='test'>TX</Letter> */}
                 </div>
                 {/* <div className={`${styles.underlineBlink} h-4/5 w-1 absolute top-0 right-2 rounded-full ${ selected ? 'bg-teal' : 'bg-none' }`}></div> */}
             </div>
@@ -47,8 +44,8 @@ function TileSVG() {
 
 function Cursor() {
     return (
-            <svg width="100%" height="100%" viewBox="0 0 4 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect y="61" width="61" height="4" rx="2" transform="rotate(-90 0 61)" fill="currentColor" />
-            </svg>
+        <svg width="100%" height="100%" viewBox="0 0 4 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect y="61" width="61" height="4" rx="2" transform="rotate(-90 0 61)" fill="currentColor" />
+        </svg>
     )
 }

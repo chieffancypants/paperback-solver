@@ -1,3 +1,5 @@
+import { ForwardedRef, forwardRef } from 'react'
+
 import SolveResultsGroup from './solve-results-group'
 import styles from './solve-results.module.css'
 
@@ -6,9 +8,8 @@ type ResultProps = {
     display: boolean
 }
 
-export default function Results (props:ResultProps) {
+const Results = forwardRef((props: ResultProps, scrollRef:ForwardedRef<HTMLDivElement>) => {
     const organized:Record<number, string[]> = {}
-    let resultGroups
 
     // sort matches first by length (longer first), then alphabetically
     props.matches.sort((a, b) => {
@@ -23,11 +24,11 @@ export default function Results (props:ResultProps) {
 
 
     if (props.matches.length === 0 && props.display) {
-        return <div className={`${ styles.shadow } text-xl text-center p-2 rounded-md bg-paper-900 text-paper-100`}>No Results found, or too few characters (3 minimum)</div>
+        return <div ref={scrollRef} className={`${ styles.shadow } text-xl text-center p-2 rounded-md bg-paper-900 text-paper-100`}>No Results found, or too few characters (3 minimum)</div>
     }
 
     return (
-        <div className="flex flex-col gap-2">
+        <div ref={scrollRef} className="flex flex-col gap-2">
             {
                 Object.entries(organized)
                     .sort((a, b) => parseInt(b[0]) - parseInt(a[0]))
@@ -37,4 +38,7 @@ export default function Results (props:ResultProps) {
             }
         </div>
     )
-}
+})
+Results.displayName = 'SolveResults'
+
+export default Results
