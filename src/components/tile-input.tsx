@@ -7,7 +7,7 @@ import Keyboard from 'react-simple-keyboard'
 import Rack from './rack'
 import { Wordlist } from '../lib/wordlist'
 
-const ignoreKeys = ['Shift', 'Control', 'Alt', 'Meta', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft', 'Escape']
+const ignoreKeys = ['Shift', 'Control', 'Alt', 'Meta', 'Escape']
 
 const isTile = (code: number) => {
     return (
@@ -49,8 +49,10 @@ export default function TileInputKeyboard(props: TileInputProps) {
                     // don't delete the last tile
                     if (tiles.length === 1) return
 
-                    // delete the current empty tile and set the cursor back one
-                    setTiles(prev => prev.slice(0, -1))
+                    // delete the tile at the cursor position:
+                    setTiles(prev => prev.filter((_, i) => i !== cursor))
+
+                    // setTiles(prev => prev.slice(0, -1))
                     setCursor(prev => prev - 1)
                 } else {
                     // delete the last letter in the current tile
@@ -67,6 +69,11 @@ export default function TileInputKeyboard(props: TileInputProps) {
                     setCursor(newTiles.length - 1)
                     return solver(tiles)
                 }
+
+                // move the cursor to the next tile if it's not the last tile
+                if (cursor !== tiles.length - 1) {
+                    return setCursor(prev => prev + 1)
+                }
                 // otherwise roll over to the tab case, which will create a new tile
             case 'Tab':
                 // don't create an empty tile
@@ -74,9 +81,32 @@ export default function TileInputKeyboard(props: TileInputProps) {
                 setTiles(prev => [...prev, ...['']])
                 setCursor(tiles.length)
                 break
+            case 'ArrowLeft':
+                if (cursor === 0) return
+                setCursor(prev => prev - 1)
+                break
+            case 'ArrowRight':
+                if (cursor === tiles.length - 1) return
+                setCursor(prev => prev + 1)
+                break
+            case '?':
+                // only allow one '?' on tile, so if they try to enter one on a tile that already has
+                // a character in it, create a new tile with the ?
+                if (tiles[cursor] !== '') {
+                    setTiles(prev => [...prev, ...['?']])
+                    setCursor(tiles.length)
+                    return
+                }
             default:
                 if (!isTile(e.key.charCodeAt(0))) return
                 if (tiles[cursor].length > 1) return
+
+                // if the tile already has a ? in it, create a new tile with the newly attempted char
+                if (tiles[cursor] === '?') {
+                    setTiles(prev => [...prev, ...[e.key]])
+                    setCursor(tiles.length)
+                    return
+                }
 
                 setDisplayResults(false)
                 setTiles(prev => {
@@ -109,7 +139,7 @@ export default function TileInputKeyboard(props: TileInputProps) {
             {/*  Rack Window */}
             <div className="p-1 sm:rounded-t-lg bg-paper-900/60 border-b-0">
                 <div className="p-4 rounded-lg bg-linen border border-paper-900/50">
-                    <Rack wordlist={Wordlist} tiles={tiles} cursor={cursor} />
+                    <Rack wordlist={Wordlist} tiles={tiles} cursor={cursor} setCursor={setCursor}/>
                 </div>
             </div>
             <Keyboard

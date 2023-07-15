@@ -18,16 +18,17 @@ type RackProps = {
     wordlist: Wordlist
     tiles: string[]
     cursor: number
+    setCursor: (cursor: number) => void
 }
 export default function Rack (props:RackProps) {
     const { tiles, cursor } = props
 
     return (
         <div className="flex flex-col gap-5" id="Rack">
-            <div className="flex -space-x-4 sm:-space-x-0 sm:gap-2 md:gap-4 justify-between sm:justify-center items-center">
+            <div className="flex -space-x-4 sm:-space-x-0 sm:gap-2 md:gap-4 justify-around sm:justify-center items-center">
                 {
                     tiles.map((tile, i) => {
-                        return <Tile key={i} chars={tile.toUpperCase()} selected={i === cursor}></Tile>
+                        return <Tile key={i} chars={tile.toUpperCase()} selected={i === cursor} onClick={() => props.setCursor(i)}></Tile>
                     })
                 }
             </div>

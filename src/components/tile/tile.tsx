@@ -4,18 +4,21 @@ import styles from './tile.module.css'
 type TileProps = {
     chars: string
     selected?: boolean
+    onClick?: () => void
 }
-export default function Tile({ chars, selected }: TileProps) {
+export default function Tile({ chars, selected, onClick }: TileProps) {
     return (
-        <div className={`
-            ${styles.shadow}
-            ${selected ? styles.selected : ''}
-            ${selected ? 'text-teal border-teal' : 'text-paper-900 border-paper-900'}
-            ${selected ? 'border-[2px] sm:border-[5px]' : 'border-[1px] sm:border-[2px]'}
-            w-[75px] h-[75px] sm:w-24 sm:h-24
-            flex flex-col items-center justify-center relative font-bold
-            bg-[#DCD4AD] border-paper-900 rounded-xl sm:rounded-2xl animate-entrance
-        `}>
+        <div
+            onClick={onClick}
+            className={`
+                ${styles.shadow}
+                ${selected ? styles.selected : ''}
+                ${selected ? 'text-teal border-teal' : 'text-paper-900 border-paper-900'}
+                ${selected ? 'border-[2px] sm:border-[5px]' : 'border-[1px] sm:border-[2px]'}
+                w-[75px] h-[75px] sm:w-24 sm:h-24
+                flex flex-col items-center justify-center relative font-bold
+                bg-[#DCD4AD] border-paper-900 rounded-xl sm:rounded-2xl animate-entrance
+            `}>
             <div className="w-full h-full">
                 <div className="w-full h-full flex items-center justify-center uppercase">
                     {chars.split('').map((char, i) => <Letter selected={selected} key={i} className="mt-3 sm:mt-5">{char}</Letter>)}
