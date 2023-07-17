@@ -24,6 +24,14 @@ interface TileInputProps {
     solver: (tiles: string[]) => void
 }
 
+// const insertChar = (char:string, _tiles:string[], cursor:number) => {
+//     const tiles = [..._tiles]
+//     tiles.splice(cursor, 0, char)
+//     return [tiles, cursor]
+// }
+
+// console.log(insertChar('W', ['A', 'B', 'C'], 1))
+
 export default function TileInputKeyboard(props: TileInputProps) {
     const { tiles, setTiles, setDisplayResults, solver } = props
     const [cursor, setCursor] = useState<number>(tiles.length - 1)
@@ -33,6 +41,12 @@ export default function TileInputKeyboard(props: TileInputProps) {
         return () => window.removeEventListener('keydown', onKeyPress)
     })
 
+    const clearRack = () => {
+        setDisplayResults(false)
+        setTiles([''])
+        setCursor(0)
+    }
+
     const onKeyPress = (e: KeyboardEvent) => {
         if (ignoreKeys.includes(e.key)) return
         e.preventDefault()
@@ -41,10 +55,7 @@ export default function TileInputKeyboard(props: TileInputProps) {
             case 'Backspace':
                 setDisplayResults(false)
                 if (e.metaKey) {
-                    setTiles([''])
-                    setCursor(0)
-                    // setDisplayResults(false)
-                    // setSolveResults([])
+                    clearRack()
                 } else if (tiles[cursor] === '') {
                     // don't delete the last tile
                     if (tiles.length === 1) return
@@ -65,6 +76,8 @@ export default function TileInputKeyboard(props: TileInputProps) {
                 // if current tile is empty, they're probably trying to submit
                 if (tiles[cursor] === '') {
                     const newTiles = tiles.filter((t) => t.length > 0)
+                    if (newTiles.length === 0) newTiles.push('')
+
                     setTiles(newTiles)
                     setCursor(newTiles.length - 1)
                     return solver(tiles)
@@ -137,9 +150,9 @@ export default function TileInputKeyboard(props: TileInputProps) {
     return (
         <div className="sm:rounded-lg mb-4 sm:m-4 shadow-lg">
             {/*  Rack Window */}
-            <div className="p-1 sm:rounded-t-lg bg-paper-900/60 border-b-0">
-                <div className="p-4 rounded-lg bg-linen border border-paper-900/50">
-                    <Rack wordlist={Wordlist} tiles={tiles} cursor={cursor} setCursor={setCursor}/>
+            <div className="p-1 sm:rounded-t-lg bg-paper-900/20 border border-paper-900/40 border-b-0">
+                <div className="p-4 rounded-lg border-0 border-paper-900/50">
+                    <Rack wordlist={Wordlist} tiles={tiles} cursor={cursor} setCursor={setCursor} clearRack={clearRack}/>
                 </div>
             </div>
             <Keyboard

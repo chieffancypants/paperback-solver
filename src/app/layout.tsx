@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             <body className={`${se.className}`}>
                 {children}
-                <footer className="text-center p-3 text-paper-900 font-sans mt-5 text-sm">
+                <footer className="text-center p-3 text-paper-900 font-sans text-sm">
                     <p className="py-2">Made with <HeartIcon /> for the board game community.</p>
                     <a className="no-underline" href="https://github.com/chieffancypants/paperback-solver"><GithubIcon /> Source Code Here</a>
                 </footer>

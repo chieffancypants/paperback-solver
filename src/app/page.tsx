@@ -34,7 +34,7 @@ export default function Home() {
 
 
     return (
-        <main className="flex flex-col items-stretch justify-between sm:p-1 lg:p-10 text-paper-900">
+        <main className="flex flex-col items-stretch justify-between sm:p-1 lg:p-10 text-paper-900 gap-5">
 
             <LoadingIndicator visible={wordlist.length === 0} />
             <Modal visible={showHelp} setVisible={setShowHelp}>
@@ -51,7 +51,6 @@ export default function Home() {
                 </div>
             </Modal>
 
-
             <TileInputKeyboard tiles={tiles} setTiles={setTiles} setDisplayResults={setDisplayResults} solver={solveTiles} />
 
 
@@ -64,10 +63,10 @@ export default function Home() {
 
             <SolveResults ref={ref} matches={solveResults} display={displayResults} />
 
-            <div className="w-3/4 m-auto mt-8 text-center sm:hidden font-sans font-bold italic"><InfoIcon /> Hint: Rotate your device for easier viewing.</div>
+            <div className="w-3/4 m-auto text-center sm:hidden font-sans font-bold italic"><InfoIcon /> Hint: Rotate your device for easier viewing.</div>
 
-            <div onClick={() => setShowHelp(!showHelp)} className="flex items-center gap-2 mt-4 m-auto">
-                <Button className="px-2 py-2">
+            <div className="flex items-center gap-2 mt-4 m-auto">
+                <Button onClick={() => setShowHelp(!showHelp)} className="px-2 py-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 24 24" strokeWidth={1.75} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                     </svg>

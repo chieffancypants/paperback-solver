@@ -1,12 +1,13 @@
 'use client'
 
 import Tile from './tile/tile'
+import { XCircleIcon } from '@/app/icons'
 
 import type { Wordlist } from '../lib/wordlist'
 
 const ignoreKeys = ['Shift', 'Control', 'Alt', 'Meta', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft', 'Escape']
 
-const isTile = (code:number) => {
+const isTile = (code: number) => {
     return (
         (code > 64 && code < 91) ||   // A-Z
         (code > 96 && code < 123) ||  // a-z
@@ -19,8 +20,9 @@ type RackProps = {
     tiles: string[]
     cursor: number
     setCursor: (cursor: number) => void
+    clearRack: () => void
 }
-export default function Rack (props:RackProps) {
+export default function Rack(props: RackProps) {
     const { tiles, cursor } = props
 
     return (
@@ -31,6 +33,11 @@ export default function Rack (props:RackProps) {
                         return <Tile key={i} chars={tile.toUpperCase()} selected={i === cursor} onClick={() => props.setCursor(i)}></Tile>
                     })
                 }
+
+                {
+                    tiles.length > 1 ? <button className="z-5 relative sm:block" onClick={props.clearRack}><XCircleIcon /></button> : ''
+                }
+
             </div>
         </div>
     )

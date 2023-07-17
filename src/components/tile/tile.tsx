@@ -23,9 +23,10 @@ export default function Tile({ chars, selected, onClick }: TileProps) {
                 <div className="w-full h-full flex items-center justify-center uppercase">
                     {chars.split('').map((char, i) => <Letter selected={selected} key={i} className="mt-3 sm:mt-5">{char}</Letter>)}
                     {
-                        selected ? <div className={`${styles.cursorBlink} text-right h-[65%] w-[8px]`}>
-                            <Cursor />
-                        </div> : ''
+                        selected ?
+                            <div className={`${styles.cursorBlink} text-right h-[65%] w-[8px]`}>
+                                <Cursor />
+                            </div> : ''
                     }
                 </div>
                 {/* <div className={`${styles.underlineBlink} h-4/5 w-1 absolute top-0 right-2 rounded-full ${ selected ? 'bg-teal' : 'bg-none' }`}></div> */}

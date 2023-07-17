@@ -22,6 +22,8 @@ const Results = forwardRef((props: ResultProps, scrollRef:ForwardedRef<HTMLDivEl
         }
     })
 
+    if (!props.display) return
+
 
     if (props.matches.length === 0 && props.display) {
         return <div ref={scrollRef} className={`${ styles.shadow } text-xl text-center p-2 rounded-md bg-paper-900 text-paper-100`}>No Results found, or too few characters (3 minimum)</div>
