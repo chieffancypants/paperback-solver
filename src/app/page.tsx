@@ -37,22 +37,7 @@ export default function Home() {
         <main className="flex flex-col items-stretch justify-between sm:p-1 lg:p-10 text-paper-900 gap-5">
 
             <LoadingIndicator visible={wordlist.length === 0} />
-            <Modal visible={showHelp} setVisible={setShowHelp}>
-                <div>
-                    <span className="text-2xl mt-2 inline-block">To get started:</span>
-                    <ul className="ml-6 list-decimal font-sans">
-                        <li className="m-1">Type the letters from your card using your keyboard or if you&apos;re on mobile, tap the keys on the onscreen keyboard</li>
-                        <li className="m-1">You can enter up to 2 letters on a card (just like in the game)</li>
-                        <li className="m-1">Use a question mark <span className="border py-[1px] px-[2px] border-paper-900/50">?</span> for wild (fame) cards</li>
-                        <li className="m-1">Tap next or use the enter key to create another card</li>
-                        <li className="m-1">Hit the backspace key <BackspaceIcon /> to delete the last letter or card</li>
-                        <li className="m-1">When complete, scroll down and tap the solve button, or hit the enter key twice</li>
-                    </ul>
-                </div>
-            </Modal>
-
             <TileInputKeyboard tiles={tiles} setTiles={setTiles} setDisplayResults={setDisplayResults} solver={solveTiles} />
-
 
             <div className="flex justify-center gap-2">
                 <Button onClick={solveTiles} className="flex items-center h-16">
@@ -73,6 +58,42 @@ export default function Home() {
                 </Button>
                 <div className="font-sans">Help me! I don&apos;t know how to use this!</div>
             </div>
+
+            {
+                showHelp ?
+                    <Modal visible={showHelp} setVisible={setShowHelp}>
+                        <div>
+                            <span className="text-3xl m-2 inline-block">Getting Started</span>
+                            <div className="flex flex-col">
+                                <p className="font-sans mt-5 mb-2">Let&apos;s assume you have the following starting hand (N T ? L S):</p>
+                                {/* eslint-disable-next-line */}
+                                <img className="rounded-lg" src="starting-hand.jpg"/>
+                                {/* <div className="flex mt-5 mb-10 gap-1">
+                                    <Tile chars='N' />
+                                    <Tile chars='T' />
+                                    <Tile chars='?' />
+                                    <Tile chars='L' />
+                                    <Tile chars='S' />
+                                </div> */}
+                                <p className="font-sans mt-10 mb-2">Play the video below to see how to go about solving this hand:</p>
+
+                            </div>
+                            <video poster="poster.jpg" src="starting-hand.mp4" controls className="w-full border border-paper-900 rounded-md mb-10" />
+
+                            <p className="font-sans mt-10 mb-2 font-bold">Step by step directions for solving a hand:</p>
+                            <ul className="ml-6 list-decimal font-sans">
+                                <li className="m-1">Type the letters from your card using your keyboard or if you&apos;re on mobile, tap the keys on the onscreen keyboard</li>
+                                <li className="m-1">You can enter up to 2 letters on a card (just like in the game)</li>
+                                <li className="m-1">Use a question mark <span className="border py-[1px] px-[2px] border-paper-900/50">?</span> for wild (fame) cards</li>
+                                <li className="m-1">Tap next or use the enter key to create another card</li>
+                                <li className="m-1">Hit the backspace key <BackspaceIcon /> to delete the last letter or card</li>
+                                <li className="m-1">When complete, scroll down and tap the solve button, or hit the enter key twice</li>
+                            </ul>
+                        </div>
+                    </Modal>
+                    : ''
+            }
+
 
         </main>
     )

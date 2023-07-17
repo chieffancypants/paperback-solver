@@ -35,7 +35,7 @@ export default function Rack(props: RackProps) {
                 }
 
                 {
-                    tiles.length > 1 ? <button className="z-5 relative sm:block" onClick={props.clearRack}><XCircleIcon /></button> : ''
+                    tiles.length > 1 ? <button className="z-5 relative left-3 sm:block" onClick={props.clearRack}><XCircleIcon /></button> : ''
                 }
 
             </div>
